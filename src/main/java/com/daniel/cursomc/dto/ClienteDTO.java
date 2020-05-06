@@ -8,7 +8,6 @@ import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 
 import com.daniel.cursomc.domain.Cliente;
-import com.daniel.cursomc.services.validation.ClienteInsert;
 import com.daniel.cursomc.services.validation.ClienteUpdate;
 
 @ClienteUpdate
