@@ -5,7 +5,6 @@ import java.io.Serializable;
 import com.daniel.cursomc.domain.Produto;
 
 public class ProdutoDTO implements Serializable {
-
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
@@ -14,7 +13,7 @@ public class ProdutoDTO implements Serializable {
 
 	public ProdutoDTO() {
 	}
-	
+
 	public ProdutoDTO(Produto obj) {
 		id = obj.getId();
 		nome = obj.getNome();
@@ -44,5 +43,4 @@ public class ProdutoDTO implements Serializable {
 	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
-
 }
