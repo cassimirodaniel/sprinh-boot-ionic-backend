@@ -18,24 +18,21 @@ import javax.persistence.OneToMany;
 
 import com.daniel.cursomc.domain.enums.TipoCliente;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
 	
-	@Column(unique = true)
+	@Column(unique=true)
 	private String email;
-	private String cpfouCnpj;
+	private String cpfOuCnpj;
 	private Integer tipo;
 
-	@JsonManagedReference
-	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="cliente", cascade=CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
 
 	@ElementCollection
@@ -43,7 +40,7 @@ public class Cliente implements Serializable {
 	private Set<String> telefones = new HashSet<>();
 
 	@JsonIgnore
-	@OneToMany(mappedBy="cliente")
+	@OneToMany(mappedBy = "cliente")
 	private List<Pedido> pedidos = new ArrayList<>();
 
 	public Cliente() {
@@ -54,8 +51,9 @@ public class Cliente implements Serializable {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
-		this.cpfouCnpj = cpfOuCnpj;
-		this.tipo = (tipo == null ? null : tipo.getCod());
+		this.cpfOuCnpj = cpfOuCnpj;
+		this.tipo = tipo.getCod();
+		this.tipo = (tipo == null) ? null : tipo.getCod();
 	}
 
 	public Integer getId() {
@@ -82,12 +80,12 @@ public class Cliente implements Serializable {
 		this.email = email;
 	}
 
-	public String getCpfouCnpj() {
-		return cpfouCnpj;
+	public String getCpfOuCnpj() {
+		return cpfOuCnpj;
 	}
 
-	public void setCpfouCnpj(String cpfouCnpj) {
-		this.cpfouCnpj = cpfouCnpj;
+	public void setCpfOuCnpj(String cpfOuCnpj) {
+		this.cpfOuCnpj = cpfOuCnpj;
 	}
 
 	public TipoCliente getTipo() {
@@ -146,5 +144,4 @@ public class Cliente implements Serializable {
 			return false;
 		return true;
 	}
-
 }

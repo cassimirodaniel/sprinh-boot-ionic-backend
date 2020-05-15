@@ -12,14 +12,13 @@ import com.daniel.cursomc.services.DBService;
 @Configuration
 @Profile("test")
 public class TestConfig {
-	
+
 	@Autowired
 	private DBService dbService;
-	
+
 	@Bean
 	public boolean instantiateDatabase() throws ParseException {
 		dbService.instantiateTestDatabase();
 		return true;
-	} 
-
+	}
 }
