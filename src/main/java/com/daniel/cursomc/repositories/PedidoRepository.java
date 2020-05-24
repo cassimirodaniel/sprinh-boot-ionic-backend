@@ -10,8 +10,8 @@ import com.daniel.cursomc.domain.Cliente;
 import com.daniel.cursomc.domain.Pedido;
 
 @Repository
-public interface PedidoRepository extends JpaRepository<Pedido, Integer>{
+public interface PedidoRepository extends JpaRepository<Pedido, Integer> {
 
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	Page<Pedido> findByCliente(Cliente cliente, Pageable pageRequest);
 }
