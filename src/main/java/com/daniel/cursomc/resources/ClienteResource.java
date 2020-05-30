@@ -25,18 +25,18 @@ import com.daniel.cursomc.dto.ClienteNewDTO;
 import com.daniel.cursomc.services.ClienteService;
 
 @RestController
-@RequestMapping(value = "/clientes")
+@RequestMapping(value="/clientes")
 public class ClienteResource {
 
 	@Autowired
 	private ClienteService service;
-
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<Cliente> find(@PathVariable Integer id) {
 		Cliente obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
-	
+
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objDto) {
 		Cliente obj = service.fromDTO(objDto);
@@ -70,8 +70,9 @@ public class ClienteResource {
 	}
 
 	@PreAuthorize("hasAnyRole('ADMIN')")
-	@RequestMapping(value = "/page", method = RequestMethod.GET)
-	public ResponseEntity<Page<ClienteDTO>> findPage(@RequestParam(value = "page", defaultValue = "0") Integer page,
+	@RequestMapping(value="/page", method = RequestMethod.GET)
+	public ResponseEntity<Page<ClienteDTO>> findPage(
+			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
 			@RequestParam(value = "orderBy", defaultValue = "nome") String orderBy,
 			@RequestParam(value = "direction", defaultValue = "ASC") String direction) {
@@ -80,8 +81,8 @@ public class ClienteResource {
 		return ResponseEntity.ok().body(listDto);
 	}
 	
-	@RequestMapping(value = "/picture", method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestParam(name="file") MultipartFile file) {
+	@RequestMapping(value="/picture", method=RequestMethod.POST)
+	public ResponseEntity<Void> uploadProfilePicture(@RequestParam(name="file") MultipartFile file) {
 		URI uri = service.uploadProfilePicture(file);
 		return ResponseEntity.created(uri).build();
 	}
